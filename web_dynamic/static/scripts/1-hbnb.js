@@ -10,5 +10,6 @@ $(document).ready(() => {
     }
     const updatedList = checkList.map(amen => amen.name).join(', ');
     $('.amenities H4').text(updatedList);
-  })}
+  });
+}
 );

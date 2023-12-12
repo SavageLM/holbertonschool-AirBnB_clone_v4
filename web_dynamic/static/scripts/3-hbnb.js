@@ -14,23 +14,23 @@ $(document).ready(() => {
 
   $.get('http://0.0.0.0:5001/api/v1/status/', (response) => {
     if (response.status === 'OK') {
-        $('DIV#api_status').addClass('available');
+      $('DIV#api_status').addClass('available');
     } else {
-        $('DIV#api_status').removeClass('available');
+      $('DIV#api_status').removeClass('available');
     }
   });
 
   $.ajax({
-    url: "http://0.0.0.0:5001/api/v1/places_search/",
-        type: "POST",
-        data: "{}",
-        dataType: "json",
-        contentType: "application/json",
-        success: function (data) {
-        $('section.places').empty();
-        if  (data.length > 0) {
-          $('section.places').append(data.map(place => {
-            return `<ARTICLE>
+    url: 'http://0.0.0.0:5001/api/v1/places_search/',
+    type: 'POST',
+    data: '{}',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function (data) {
+      $('section.places').empty();
+      if (data.length > 0) {
+        $('section.places').append(data.map(place => {
+          return `<ARTICLE>
                       <DIV class="title">
                         <H2>${place.name}</H2>
                         <DIV class="price_by_night">
@@ -58,14 +58,11 @@ $(document).ready(() => {
                         ${place.description}
                       </DIV>
                     </ARTICLE>`;
-          }));
-        } else {
-          $('section.places').append('<p> emty places</p>');
-        }
-      },
-      error: function (err) {
-        console.error("An error has occurred");
+        }));
+      } else {
+        $('section.places').append('<p> emty places</p>');
       }
-    });
-  }
-});
+    }
+  });
+}
+);
