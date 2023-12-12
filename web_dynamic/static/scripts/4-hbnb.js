@@ -19,8 +19,16 @@ $(document).ready(() => {
       $('DIV#api_status').removeClass('available');
     }
   });
-      // Create the data object with checked amenity IDs
-      $('button').click(function () {
+    $.ajax({
+        url: 'http://0.0.0.0:5001/api/v1/places_search/',
+        type: 'POST',
+        data: '{}',
+        dataType: 'json',
+        contentType: 'application/json',
+        success: searchPlaces
+    });
+
+    $('button').click(function () {
         $.ajax({
             url: api + ':5001/api/v1/places_search/',
             type: 'POST',
@@ -31,12 +39,13 @@ $(document).ready(() => {
         });
       });
 });
-function searchPlaces (data) {
-    $('SECTION.places').empty();
-    if (data.length > 0) {
-        // Append HTML elements for each place
-        $('SECTION.places').append(data.map(place => {
-            return `<ARTICLE>
+
+    function searchPlaces (data) {
+        $('SECTION.places').empty();
+        if (data.length > 0) {
+            // Append HTML elements for each place
+            $('SECTION.places').append(data.map(place => {
+                return `<ARTICLE>
             <DIV class="title">
                 <H2>${place.name}</H2>
                 <DIV class="price_by_night">
