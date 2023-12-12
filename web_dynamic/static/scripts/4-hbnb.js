@@ -81,4 +81,5 @@ $(document).ready(() => {
             dataType: 'json',
             success: searchPlaces
         });
-    }));
+    });
+});
