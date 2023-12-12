@@ -1,10 +1,9 @@
 #!/usr/bin/node
 $(document).ready(() => {
     let checkList = [];
-    
+
     //update API endpoint
     const api = "http://0.0.0.0";
-    const requestData = {};
 
     $('INPUT[type="checkbox"]').change(function () {
         const amenityData = { id: $(this).data('id'), name: $(this).data('name') };
@@ -65,7 +64,7 @@ $(document).ready(() => {
     $.ajax({
         url: '${api}:5001/api/v1/places_search/',
         type: 'POST',
-        data: JSON.stringify(requestData),
+        data: '{}',
         dataType: 'json',
         contentType: 'application/json',
         success: searchPlaces
@@ -77,10 +76,9 @@ $(document).ready(() => {
         $.ajax({
             url: '${api}:5001/api/v1/places_search/',
             type: 'POST',
-            data: JSON.stringify(requestData),
+            data: JSON.stringify({ 'amenities': Object.keys(amenities) }),
             contentType: 'application/json',
             dataType: 'json',
             success: searchPlaces
         });
-    });
-});
+    }));
