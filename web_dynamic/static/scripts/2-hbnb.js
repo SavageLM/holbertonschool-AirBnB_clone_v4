@@ -12,7 +12,8 @@ $(document).ready(() => {
     $('.amenities H4').text(updatedList);
   })
 
- $.get('http://0.0.0.0:5001/api/v1/status', (response) => {
+
+  $.get('http://localhost:5001/api/v1/status/', (response) => {
     if (response.status === "OK") {
         $('DIV#api_status').addClass('available');
     } else {
