@@ -1,3 +1,4 @@
+#!/usr/bin/node
 $(document).ready(() => {
     const getPlacesAmenities = () => {
       const checkedAmenities = $('INPUT[type="checkbox"]:checked').map(function () {
