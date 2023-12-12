@@ -60,7 +60,7 @@ $(document).ready(() => {
                     </ARTICLE>`;
           }));
         } else {
-          $('section.places').append('<p> cant locate places</p>');
+          $('section.places').append('<p> emty places</p>');
         }
       },
       error: function (err) {
