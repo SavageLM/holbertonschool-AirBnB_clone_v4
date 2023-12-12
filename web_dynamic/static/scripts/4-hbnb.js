@@ -64,5 +64,5 @@ function searchPlaces (data) {
         }));
     } else {
         $('SECTION.places').append('<p>places empty</p>');
-        },
-    };
+    },
+};
