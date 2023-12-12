@@ -1,13 +1,10 @@
 $(document).ready(() => {
-    // Function to get places based on checked amenities
     const getPlacesAmenities = () => {
-      // Create an array to store checked amenity IDs
       const checkedAmenities = $('INPUT[type="checkbox"]:checked').map(function () {
         return $(this).data('id');
       }).get();
       // Create the data object with checked amenity IDs
       const requestData = JSON.stringify({ amenities: checkedAmenities });
-      // Make a new POST request to places_search
       $.ajax({
         url: api + ':5001/api/v1/places_search/',
         type: 'POST',
@@ -15,7 +12,6 @@ $(document).ready(() => {
         contentType: 'application/json',
         dataType: 'json',
         success: function (data) {
-          // Clear existing places before appending new ones
           $('SECTION.places').empty();
           if (data.length > 0) {
             // Append HTML elements for each place
@@ -58,4 +54,3 @@ $(document).ready(() => {
     // Add click event listener to the search button
     $('#searchButton').click(getPlacesAmenities);
   });
-  
