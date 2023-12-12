@@ -20,20 +20,52 @@ $(document).ready(() => {
     }
   });
 
-  const getPlaces = {
-    $.ajax({
-        url: "http://0.0.0.0:5001/api/v1/places_search/",
+  $.ajax({
+    url: "http://0.0.0.0:5001/api/v1/places_search/",
         type: "POST",
         data: "{}",
         dataType: "json",
         contentType: "application/json",
         success: function (data) {
-            $(".places").empty();
-            for (let elem of data) {
-                //appends elem for each place
-                $(".places").append('<article><div class="title"><h2>' + elem['name'] + '</h2> <div clas="price_by_night">' + elem['price_by_night'] + '</div></div> <div class="information"><div class="max_guest">')
-            }
+        $('section.places').empty();
+        if  (data.length > 0) {
+          $('section.places').append(data.map(place => {
+            return `<ARTICLE>
+                      <DIV class="title">
+                        <H2>${place.name}</H2>
+                        <DIV class="price_by_night">
+                          ${place.price_by_night}
+                        </DIV>
+                      </DIV>
+                      <DIV class="information">
+                        <DIV class="max_guest">
+                          <I class="fa fa-users fa-3x" aria-hidden="true"></I>
+                          </BR>
+                          ${place.max_guest} Guests
+                        </DIV>
+                        <DIV class="number_rooms">
+                          <I class="fa fa-bed fa-3x" aria-hidden="true"></I>
+                          </BR>
+                          ${place.number_rooms} Bedrooms
+                        </DIV>
+                        <DIV class="number_bathrooms">
+                          <I class="fa fa-bath fa-3x" aria-hidden="true"></I>
+                          </BR>
+                          ${place.number_bathrooms} Bathrooms
+                        </DIV>
+                      </DIV>
+                      <DIV class="description">
+                        ${place.description}
+                      </DIV>
+                    </ARTICLE>`;
+          }));
+        } else {
+          $('section.places').append('<p> cant locate places</p>');
         }
-    })
+      },
+      error: function (err) {
+        console.error("An error has occurred");
+      }
+    });
   }
 });
