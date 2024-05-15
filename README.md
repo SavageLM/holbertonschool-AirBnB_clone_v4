@@ -154,9 +154,8 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time. 
 
 ## Authors
-Logan Savage - 
-Rachael Bradford - 
+Logan Savage - https://github.com/SavageLM
+Rachael Bradford - https://github.com/Moonwalkert3ch
 
-Second part of Airbnb: Joann Vuong
 ## License
 Public Domain. No copy write protection. 
